@@ -1,0 +1,156 @@
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Z TOOL - Authentication</title>
+
+<style>
+body {
+    background: #101010;
+    color: white;
+    font-family: Arial;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.box {
+    background: #202020;
+    padding: 25px;
+    border-radius: 12px;
+    width: 280px;
+    text-align: center;
+}
+
+input, button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 12px;
+    box-sizing: border-box;
+    border-radius: 6px;
+}
+
+input {
+    background: #333;
+    color: white;
+    border: 1px solid #555;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+    background: #00ff88;
+    font-weight: bold;
+}
+
+.switch {
+    background: #444;
+    color: white;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+<h2>Z TOOL</h2>
+<p id="mode">CREATE ACCOUNT</p>
+
+<input id="username" placeholder="Username">
+
+<input id="password" type="password"
+placeholder="Password">
+
+<button onclick="submitAuth()" id="mainBtn">
+CREATE ACCOUNT
+</button>
+
+<button class="switch" onclick="toggleMode()">
+SWITCH TO LOGIN
+</button>
+
+<p id="status"></p>
+
+</div>
+
+<script>
+
+let isLogin = false;
+
+function toggleMode() {
+    isLogin = !isLogin;
+
+    document.getElementById("mode").innerText =
+    isLogin ? "LOGIN" : "CREATE ACCOUNT";
+
+    document.getElementById("mainBtn").innerText =
+    isLogin ? "LOGIN" : "CREATE ACCOUNT";
+
+  document.querySelector(".switch").innerText =
+    isLogin ? "SWITCH TO REGISTER" : "SWITCH TO LOGIN";
+
+    document.getElementById("status").innerText = "";
+}
+
+function submitAuth() {
+
+    let username =
+    document.getElementById("username").value.trim();
+
+    let password =
+    document.getElementById("password").value;
+
+    let status = document.getElementById("status");
+
+    if (!username || !password) {
+        status.innerText = "Fill all fields!";
+        return;
+    }
+
+    let accounts = JSON.parse(
+        localStorage.getItem("ztool_accounts") || "{}"
+    );
+
+    if (isLogin) {
+
+        if (
+            accounts[username] &&
+            accounts[username].password === password
+        ) {
+            sessionStorage.setItem("ztool_user", username);
+            window.location.href = "Gd shop.html";
+        } else {
+            status.innerText = "Wrong username or password!";
+        }
+
+    } else {
+
+        if (accounts[username]) {
+            status.innerText = "Username already exists!";
+            return;
+        }
+
+        accounts[username] = {
+            password: password,
+            infected: false
+        };
+
+        localStorage.setItem(
+            "ztool_accounts",
+            JSON.stringify(accounts)
+        );
+
+        sessionStorage.setItem("ztool_user", username);
+
+        window.location.href = "Gd shop.html";
+    }
+
+}
+
+</script>
+
+</body>
+</html>

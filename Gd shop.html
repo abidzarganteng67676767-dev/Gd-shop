@@ -1,0 +1,200 @@
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Z TOOL - Authentication</title>
+
+<style>
+body {
+    background: #101010;
+    color: white;
+    font-family: Arial;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100vh;
+}
+
+.box {
+    background: #202020;
+    padding: 25px;
+    border-radius: 12px;
+    width: 280px;
+    text-align: center;
+}
+
+input, button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 12px;
+    box-sizing: border-box;
+    border-radius: 6px;
+}
+
+input {
+    background: #333;
+    color: white;
+    border: 1px solid #555;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+    background: #00ff88;
+    font-weight: bold;
+}
+
+.switch {
+    background: #444;
+    color: white;
+}
+
+.container {
+    text-align: center;
+    color: #00ff88;
+    font-size: 30px;
+  
+    text-align: center;
+    margin-top: 0;
+}
+img {
+    width: 200px;
+    height: auto;
+    border-radius: 12px;
+}
+
+.product {
+    background: #202020;
+    width: 220px;
+    padding: 15px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.product img {
+    width: 100%;
+    height: 180px;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.product h2 {
+    color: white;
+    font-size: 20px;
+}
+
+.product button {
+    background: #00ff88;
+    color: black;
+    border: none;
+    padding: 12px;
+    width: 100%;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+  body {
+    background: #101010;
+    color: white;
+    font-family: Arial;
+    display: block;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+}
+
+.product {
+    background: #202020;
+    width: 220px;
+    padding: 15px;
+    border-radius: 12px;
+    text-align: center;
+    margin: 20px auto;
+}
+
+.product img {
+    width: 100%;
+    height: 180px;
+    object-fit: contain;
+}
+
+.product h2 {
+    font-size: 20px;
+}
+
+.product p {
+    color: #00ff88;
+}
+
+.product button {
+    background: #00ff88;
+    color: black;
+    border: none;
+    padding: 12px;
+    width: 100%;
+    border-radius: 6px;
+    font-weight: bold;
+    }
+  .product-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    padding: 10px;
+}
+
+.product {
+    background: #202020;
+    padding: 10px;
+    border-radius: 12px;
+    text-align: center;
+    width: auto;
+    margin: 0;
+    min-width: 0;
+}
+
+.product img {
+    width: 100%;
+    height: 130px;
+    object-fit: contain;
+    }
+</style>
+</head>
+
+<body>
+
+  <h2 id="welcome"></h2>
+
+<script>
+let user = sessionStorage.getItem("ztool_user");
+
+if (!user) {
+    window.location.href = "index.html";
+} else {
+    document.getElementById("welcome").innerText =
+    "HELLO: " + user;
+}
+</script>
+  
+  <div class="container">
+        welcome to<br>
+      gd shop</br>
+    </div>
+</body>
+
+<div class="product-container">
+
+    <div class="product">
+        <img src="image-1794470124012.jpg">
+        <h2>GD SUPER 2000</h2>
+        <p>Rp 1.000</p>
+        <button>BUY</button>
+    </div>
+
+    <div class="product">
+        <img src="image-1794641622118.jpg">
+        <h2>GD THE MICRO</h2>
+        <p>FREE</p>
+        <button>BUY</button>
+    </div>
+
+</div>
